@@ -11,7 +11,25 @@ function App() {
 
   const handleSubmit = e => {
     e.preventDefault();
-
+    if (
+      !fullName.trim() ||
+      !username.trim() ||
+      !password.trim() ||
+      !specialization.trim() ||
+      !experience.trim() || experience <= 0 ||
+      !description.trim()
+    ) {
+      alert("Errore. Compilare tutti i campi correttamente");
+      return;
+    }
+    console.log("Submit effettuato", {
+      fullName,
+      username,
+      password,
+      specialization,
+      experience,
+      description
+    });
   }
 
   // RENDER
@@ -74,6 +92,7 @@ function App() {
             onChange={(e) => setDescription(e.target.value)}
           />
         </label>
+        <button type="submit">Registrati</button>
       </form>
     </section>
   )
