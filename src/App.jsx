@@ -41,7 +41,10 @@ function App() {
       !password.trim() ||
       !specialization.trim() ||
       !experience.trim() || experience <= 0 ||
-      !description.trim()
+      !description.trim() ||
+      !isUsernameValid ||
+      !isPasswordValid ||
+      !isDescriptionValid
     ) {
       alert("Errore. Compilare tutti i campi correttamente");
       return;
@@ -127,7 +130,7 @@ function App() {
           />
           {description.trim() && (
             <p style={{ color: isDescriptionValid ? "green" : "red" }}>
-              {isPasswordValid ? "Descrizione valida." : "Almeno 100 caratteri. Massimo 1000."}
+              {isDescriptionValid ? "Descrizione valida." : "Almeno 100 caratteri. Massimo 1000."}
             </p>
           )}
         </label>
