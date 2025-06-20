@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useRef } from "react";
 
 const letters = "abcdefghijklmnopqrstuvwxyz";
 const numbers = "0123456789";
@@ -6,12 +6,13 @@ const symbols = "!@#$%^&*()-_=+[]{}|;:'\",.<>?/`~";
 
 function App() {
 
-  const [fullName, setFullName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [specialization, setSpecialization] = useState("");
-  const [experience, setExperience] = useState("");
   const [description, setDescription] = useState("");
+
+  const fullNameRef = useRef();
+  const specializationRef = useRef();
+  const experienceRef = useRef();
 
   const isUsernameValid = useMemo(() => {
     const charsValid = username.split("").every(char =>
@@ -35,6 +36,11 @@ function App() {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    const fullName = fullNameRef.current.value;
+    const specialization = specializationRef.current.value;
+    const experience = experienceRef.current.value;
+
     if (
       !fullName.trim() ||
       !username.trim() ||
@@ -69,8 +75,7 @@ function App() {
           <p>Nome Completo</p>
           <input
             type="text"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
+            ref={fullNameRef}
           />
         </label>
         {/* username */}
@@ -105,8 +110,9 @@ function App() {
         <label>
           <p>Specializzazione</p>
           <select
-            value={specialization}
-            onChange={(e) => setSpecialization(e.target.value)}>
+            ref={specializationRef}
+          >
+            <option value="Seleziona"></option>
             <option value="Full Stack">Full Stack</option>
             <option value="Front End">Front End</option>
             <option value="Backend">Backend</option>
@@ -117,8 +123,7 @@ function App() {
           <p>Esperienza</p>
           <input
             type="number"
-            value={experience}
-            onChange={(e) => setExperience(e.target.value)}
+            ref={experienceRef}
           />
         </label>
         {/* description */}
