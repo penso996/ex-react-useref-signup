@@ -45,7 +45,7 @@ function App() {
       !fullName.trim() ||
       !username.trim() ||
       !password.trim() ||
-      !specialization.trim() ||
+      !specialization.trim() || specialization === "Seleziona" ||
       !experience.trim() || experience <= 0 ||
       !description.trim() ||
       !isUsernameValid ||
